@@ -174,7 +174,7 @@ A Windows Terminal helper script is included that opens SSH sessions to all five
 Run it from the project root:
 
 ```bat
-connect.bat
+.\terminal.cmd
 ```
 
 This opens five panes simultaneously, one per VM, using the devops key for authentication. Requires Windows Terminal to be installed.
