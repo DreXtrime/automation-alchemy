@@ -11,8 +11,8 @@ if [ -n "$APT_CACHE_URL" ]; then
 fi
 
 # Update and upgrade packages
- apt-get update -y
- apt-get full-upgrade -y
+apt-get update -y
+apt-get full-upgrade -y
 
 # Create devops user only if it doesn't exist
 if ! id devops &>/dev/null; then

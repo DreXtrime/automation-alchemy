@@ -103,7 +103,6 @@ chown devops:devops /opt/restore.sh
 
 # Schedule weekly backup via cron
 CRON_JOB="0 2 * * 0 /opt/backup.sh >> /var/log/backup.log 2>&1"
-if ! crontab -u devops -l 2>/dev/null | grep -qF "$CRON_JOB"; then
-    (crontab -u devops -l 2>/dev/null; echo "$CRON_JOB") | crontab -u devops -
-fi
+echo "$CRON_JOB" | sudo -u devops crontab -
+
 echo "Backup system configured successfully"
