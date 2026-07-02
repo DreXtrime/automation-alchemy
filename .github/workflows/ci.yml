@@ -12,7 +12,8 @@ jobs:
 
       - name: Download config-file-validator
         run: |
-          curl -L https://github.com/Boeing/config-file-validator/releases/latest/download/validator-linux-amd64 -o validator
+          VERSION=$(curl -s https://api.github.com/repos/Boeing/config-file-validator/releases/latest | grep tag_name | cut -d '"' -f 4)
+          curl -L -o validator "https://github.com/Boeing/config-file-validator/releases/download/${VERSION}/validator-linux-amd64"
           chmod +x validator
 
       - name: Validate config files
