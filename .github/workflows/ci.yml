@@ -14,4 +14,4 @@ jobs:
         run: go install github.com/Boeing/config-file-validator/v2/cmd/validator@latest
 
       - name: Validate config files
-        run: ~/go/bin/validator --search-path .
+        run: ~/go/bin/validator .
