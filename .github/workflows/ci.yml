@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-configs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Download config-file-validator
+        run: |
+          curl -L https://github.com/Boeing/config-file-validator/releases/latest/download/validator-linux-amd64 -o validator
+          chmod +x validator
+
+      - name: Validate config files
+        run: ./validator --search-path .
