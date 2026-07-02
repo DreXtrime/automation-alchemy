@@ -72,4 +72,16 @@ Vagrant.configure("2") do |config|
     app.vm.provision "shell", path: "scripts/docker.sh"
     app.vm.provision "shell", path: "scripts/backend.sh"
   end
+
+  config.vm.define "backup" do |bkp|
+    bkp.vm.hostname = "backup"
+    bkp.vm.network "private_network", ip: "192.168.56.30"
+    bkp.vm.provider "virtualbox" do |vb|
+      vb.name = "backup"
+      vb.memory = "1024"
+      vb.cpus = 1
+    end
+    bkp.vm.provision "file", source: "~/.ssh/backup_key", destination: "/tmp/backup_key"
+    bkp.vm.provision "shell", path: "scripts/backup.sh"
+  end
 end
