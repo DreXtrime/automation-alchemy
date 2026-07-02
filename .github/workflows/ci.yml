@@ -10,11 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Download config-file-validator
-        run: |
-          VERSION=$(curl -s https://api.github.com/repos/Boeing/config-file-validator/releases/latest | grep tag_name | cut -d '"' -f 4)
-          curl -L -o validator "https://github.com/Boeing/config-file-validator/releases/download/${VERSION}/validator-linux-amd64"
-          chmod +x validator
+      - name: Install config-file-validator
+        run: go install github.com/Boeing/config-file-validator/v2/cmd/validator@latest
 
       - name: Validate config files
-        run: ./validator --search-path .
+        run: validator --search-path .
