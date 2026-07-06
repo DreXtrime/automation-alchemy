@@ -5,9 +5,14 @@ BACKUP_DIR="/opt/backups"
 BACKUP_KEY="/home/devops/.ssh/backup_key"
 
 # Move the backup key from tmp to the right place
-mv /tmp/backup_key "$BACKUP_KEY"
-chown devops:devops "$BACKUP_KEY"
-chmod 600 "$BACKUP_KEY"
+if [ -f /tmp/backup_key ]; then
+    cp /tmp/backup_key "$BACKUP_KEY"
+    chown devops:devops "$BACKUP_KEY"
+    chmod 600 "$BACKUP_KEY"
+elif [ ! -f "$BACKUP_KEY" ]; then
+    echo "ERROR: backup_key not found in /tmp and not already in place"
+    exit 1
+fi
 
 # Create backup directory
 mkdir -p "$BACKUP_DIR"
