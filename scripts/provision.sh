@@ -70,16 +70,17 @@ ufw default allow outgoing
 ufw allow ssh
 ufw --force enable
 
-# Add hostname resolution only if not already present
-if ! grep -q "192.168.56.10" /etc/hosts; then
-    cat >> /etc/hosts << EOF
+# Remove old entries if they exist
+sed -i '/192\.168\.56\./d' /etc/hosts
+
+# Add hostname resolution
+cat >> /etc/hosts << EOF
 192.168.56.10 loadbalancer
 192.168.56.11 webserver01
 192.168.56.12 webserver02
 192.168.56.20 appserver
 192.168.56.30 backup
 EOF
-fi
 
 # Set devops password
 echo "devops:$DEVOPS_PASSWORD" | chpasswd
