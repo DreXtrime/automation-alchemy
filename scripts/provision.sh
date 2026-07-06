@@ -46,8 +46,8 @@ fi
 # Configure SSH
 sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
 sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
-if ! grep -q "AllowUsers devops" /etc/ssh/sshd_config; then
-    echo "AllowUsers devops" >> /etc/ssh/sshd_config
+if ! grep -q "AllowUsers devops vagrant" /etc/ssh/sshd_config; then
+    echo "AllowUsers devops vagrant" >> /etc/ssh/sshd_config
 fi
 
 # Remove cloud-init SSH override
