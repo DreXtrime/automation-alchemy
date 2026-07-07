@@ -11,6 +11,7 @@ if [ -n "$APT_CACHE_URL" ]; then
 fi
 
 # Update and upgrade packages
+export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
 apt-get full-upgrade -y
 
