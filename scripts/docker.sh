@@ -39,3 +39,13 @@ systemctl start docker
 if ! groups devops | grep -q docker; then
     usermod -aG docker devops
 fi
+
+# Run Watchtower to auto-update containers
+if ! docker ps -a --format '{{.Names}}' | grep -q "^watchtower$"; then
+    docker run -d \
+        --name watchtower \
+        --restart unless-stopped \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        nickfedor/watchtower \
+        --interval 30
+fi
