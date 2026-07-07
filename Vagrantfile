@@ -26,9 +26,6 @@ Vagrant.configure("2") do |config|
   backup_pub_key = File.exist?(backup_pub_key_path) ? File.read(backup_pub_key_path).strip : ""
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--biosbootmenu", "disabled"]
-    vb.customize ["modifyvm", :id, "--audio", "none"]
-    vb.customize ["modifyvm", :id, "--ioapic", "on"]
     vb.gui = false
   end
 
