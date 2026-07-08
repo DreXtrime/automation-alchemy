@@ -280,11 +280,11 @@ Images are pulled directly from the registry during provisioning and kept up to 
 
 ### GitHub Actions
 
-The monitoring application repository has a GitHub Actions workflow that triggers on every push and pull request. The pipeline runs in stages:
+The [monitoring application](https://github.com/DreXtrime/simple-infra-monitor) repository has a GitHub Actions workflow that triggers on every push and pull request. The pipeline runs in stages:
 
-- **Test** — runs pytest, flake8 code quality checks, and bandit security scans against both the frontend and backend
-- **Build** — builds Docker images for both components
-- **Publish** — on pushes to main, publishes updated images to GitHub Container Registry, tagged as both `latest` and the commit SHA
+- **Test** - runs pytest, flake8 code quality checks, and bandit security scans against both the frontend and backend
+- **Build** - builds Docker images for both components
+- **Publish** - on pushes to main, publishes updated images to GitHub Container Registry, tagged as both `latest` and the commit SHA
 
 Failed runs trigger an email notification automatically. The full pipeline logs are visible in the GitHub Actions UI.
 
